@@ -1,0 +1,22 @@
+
+# wearmeat socket messages
+
+All messages happen in a SocketIO room equivalent to the wearmeat group Id.
+
+join
+{
+  clientId: client id
+}
+
+setName
+{
+  clientId: client id
+  name: the person's name
+}
+
+updateLocation
+{
+  clientId: client id
+  location: DOM Geolocation object
+}
+
