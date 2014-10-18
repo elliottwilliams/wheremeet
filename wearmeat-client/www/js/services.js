@@ -1,5 +1,7 @@
 angular.module('wearmeat.services', [])
 
+.value('serverURL', 'http://localhost:3000')
+
 /**
  * A simple example service that returns some data.
  */
@@ -23,4 +25,33 @@ angular.module('wearmeat.services', [])
       return friends[friendId];
     }
   }
-});
+})
+
+// Server SocketIO transport
+.factory('socket', function (socketFactory, serverURL) {
+  var socket = socketFactory({
+      ioSocket: io('http://localhost:3000')
+  });
+  // app-level config of socket
+  return socket;
+
+})
+
+
+.factory('clientId', function () {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+               .toString(16)
+               .substring(1);
+  }
+
+  var clientId = s4() + s4();
+  return clientId;
+})
+
+
+.factory('handleError', function () {
+  return function handleError(msg){
+    alert("Error, yo:\n\n" + JSON.stringify(msg, null, ' '));
+  };
+})

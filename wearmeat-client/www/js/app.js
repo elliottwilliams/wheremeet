@@ -4,7 +4,8 @@ angular.module('wearmeat', [
   'ionic',
   'wearmeat.controllers',
   'wearmeat.services',
-  'google-maps'.ns()
+  'google-maps'.ns(),
+  'btford.socket-io'
 ])
 
 .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
@@ -24,7 +25,7 @@ angular.module('wearmeat', [
   $stateProvider
 
     .state('map', {
-      url: '/map',
+      url: '/map?groupId',
       templateUrl: 'templates/map.html',
       controller: 'MapCtrl',
       resolve: {
