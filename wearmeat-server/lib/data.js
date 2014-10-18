@@ -7,7 +7,7 @@ Each Group:
 	destinations: array of destinations
 		ID: string
 		name: name
-		locations: location object
+		location: location object
 			longitude
 			latitude
 	members: array of members
@@ -38,7 +38,7 @@ function getGroupByID( id ){
 			return groups[i];
 		}
 	}
-	return NULL;
+	return null;
 }
 
 //used to both add new members and update old members
