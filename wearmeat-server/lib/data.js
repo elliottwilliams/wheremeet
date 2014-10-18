@@ -49,7 +49,7 @@ function addMember( groupID, member ){
 			return;
 		}
 	}
-	groups.push( member );
+	group.members.push( member );
 }
 
 module.exports.groups = groups;
