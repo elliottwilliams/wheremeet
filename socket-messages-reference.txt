@@ -1,7 +1,10 @@
 
-# wearmeat socket messages
+WEARMEAT SOCKET MESSAGES
+========================
 
 All messages happen in a SocketIO room equivalent to the wearmeat group Id.
+
+CLIENT-TO-SERVER MESSAGES:
 
 join
 {
@@ -20,3 +23,32 @@ updateLocation
   location: DOM Geolocation object
 }
 
+SERVER-TO-CLIENT MESSAGES:
+
+destinations
+{
+  groupId: group id
+  destinations: [
+    Destination object JSON
+  ]
+}
+
+chosenDestination
+{
+  groupId: group id
+  chosenDestination: Destination object
+  distance: distance in mi
+}
+
+members
+{
+  groupId: group id
+  members: [
+    Member JSON object
+  ]
+}
+
+joined
+{
+  groupId: group id
+}
