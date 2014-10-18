@@ -3,6 +3,7 @@
  * Creates and exports the Groups array
 Each Group:
 	ID: several character string
+	options: things that we will implement LATER
 	destinations: array of destinations
 		ID: string
 		name: name
@@ -19,8 +20,9 @@ Each Group:
 
 var groups = [];
 
-function createGroup( id, dests ){
+function createGroup( id, opts, dests ){
 	return { ID: id,
+		options: opts,
 		destinations: dests,
 		members: []
 	};
