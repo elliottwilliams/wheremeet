@@ -47,6 +47,24 @@ function distance( loc1, loc2 ){
  *
  */
 
+//Assumes destinations is nonempty
+//min process exploits limits of Number, might want to revise
+function pickSumDistance( destinations, members ){
+	var minDest = destinations[0];
+	var minDist = Number.MAX_VALUE;
+	for( int destI=0; destI<destinations.length; destI++ ){
+		var sumDists = 0;
+		for( int memI=0; memI < members.length; memI++){
+			sumDists += distance( destination[destI].location,
+					members[memI].location );
+		}
+		if( sumDists<minDist ){
+			minDist = sumDists;
+			minDest = destinations[destI];
+		}
+	}
+	return minDest;
+}
 
 console.log( distance( {latitude:10,longitude:20}, 
 	{latitude:20,longitude:25} ) );
