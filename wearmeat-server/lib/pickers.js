@@ -67,7 +67,7 @@ function pickSumDistance( destinations, members ){
 }
 
 /*console.log( distance( {latitude:10,longitude:20}, 
-	{latitude:20,longitude:25} ) ); */
+	{latitude:20,longitude:25} ) ); * /
 var dests = [
 	{ name:'Wiley', 
 		location:{ longitude:20.000, 
@@ -90,7 +90,7 @@ var members = [
 			latitude:20.011 }
 	}
 ]
-console.log( pickSumDistance(dests, members) );
+console.log( pickSumDistance(dests, members) ); */
 
 
 

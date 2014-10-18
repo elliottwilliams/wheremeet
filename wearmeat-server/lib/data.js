@@ -53,7 +53,6 @@ function getMember( groupID, memberID ){
 function updateLocation( groupID, memberID, location ){
 	getMember(groupID,memberID).location = location;
 }
-//DEPRECATED
 //used to both add new members and update old members
 //members store their own id's
 //Currently unsafe if groupID doesn't exit, needs to be checked in calling code
