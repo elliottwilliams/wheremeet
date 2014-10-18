@@ -3,9 +3,28 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/socket.io/socket.io.js"></script>
+
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <script type="text/javascript">
+      var socket = io();
+
+      socket.on('connect', function() {
+
+        console.log('connected to socket');
+
+        socket.emit('join', {
+          foo: 'bar'
+        });
+      })
+
+      
+    </script>
+
+
   </body>
 </html>
