@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var data = require('../lib/data');
 
-/* GET home page.
+/* GET home page. * /
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 }); */
@@ -12,8 +12,21 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res){
-	//horrible code incomming
+	var groupId = createGroupId();
+	var newGroup = data.createGroup( groupId, dests );
+	data.addGroup( newGroup );
+
+	//redirect to new page
+	res.redirect( "/"+groupId );
+
+	console.log(data.groups);
+});
+
+function createGroupId(){
 	var groupId = ""+Math.floor( 1000000*Math.random() );
+	return groupId;
+}
+function buildDests( req ){
 	var dests = [
 		{ name:'Wiley',
 			location:{ longitude:20.000,
@@ -24,23 +37,10 @@ router.post('/', function(req, res){
 				latitude:20.010}
 		}
 	]
-
-	var newGroup = data.createGroup( groupId, dests );
-	data.addGroup( newGroup );
-
-	var memberId = Math.floor( 1000000*Math.random() );
-	//absolutely terrible
-	var member = { ID: memberId,
-			name: "creator",
-			location: { longitude:20.021,
-				latitude:20.011 }
-	};
-	data.addMember( groupId, member);
-
-	//redirect to new page
-	res.redirect( "/"+groupId );
-
-	console.log(data.groups);
-});
+	return dests;
+}
+function buildOptions( req ){
+	return {};
+}
 
 module.exports = router;
