@@ -1,7 +1,22 @@
-angular.module('starter.controllers', [])
+angular.module('wearmeat.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('MapCtrl', function($scope) {
+
 })
+
+.controller('DashCtrl', ['$scope', 'GoogleMapApi'.ns(), function ($scope, GoogleMapApi) {
+  GoogleMapApi.then(function(maps) {
+    console.debug('Google Map ready');
+  });
+
+  $scope.map = {
+      center: {
+          latitude: 45,
+          longitude: -73
+      },
+      zoom: 8
+  };
+}])
 
 .controller('FriendsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();
