@@ -4,7 +4,7 @@ var data = require('../lib/data');
 
 module.exports = function(socket, io) {
 
-	socket.on('join', function(data) {
+	socket.on('join', function(msg) {
 		//do whatever
 		//data object model:
 		// {
@@ -12,19 +12,18 @@ module.exports = function(socket, io) {
 		//   name: uhhh name
 		//   room: same as groupID
 		// }
-		console.log(data.name + ' join in room ' + data.room, data);
+		console.log(msg.name + ' join in room ' + msg.groupId, msg);
 
 		var member = {
-			ID: data.clientId,
-			name: data.name,
+			ID: msg.clientId,
+			name: msg.name,
 			location: null
 		} //member's location field is null to start
 		//you MUST check when displaying based on location
-		data.addMember( data.room, member );
+		data.addMember( msg.groupId, member );
 		
-		socket.join(data.room);
-		
-		io.to(data.room).emit('joined', data);
+		socket.join( msg.groupId );
+		socket.emit('joined', data);
 	});
 
 }

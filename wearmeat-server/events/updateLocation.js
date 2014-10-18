@@ -1,6 +1,6 @@
 // var io = require('../io');
 
-var data = require('../lib/data');
+var serverData = require('../lib/data');
 
 module.exports = function(socket, io) {
 
@@ -12,17 +12,19 @@ module.exports = function(socket, io) {
 		//   name: uhhh name
 		//   room: same as groupID
 		// }
-		console.log(data.name + 'updated location in room ' + data.room, data.location);
+		console.log(data.name + 'updated location in room ' + data.groupId, data.location);
 		
-		if( data.getMember(data.groupId, data.clientId)!==null ){
-			data.updateLocation( data.groupId, data.clientId, data.location );
+		if( serverData.getMember(data.groupId, data.clientId)!==null ){
+			serverData.updateLocation( data.groupId, data.clientId, data.location );
 		} else {
 			console.log( 'nonexistent member tried to update his location' );
 		}
 		
-		socket.join(data.room);
-		
-		io.to(data.room).emit('membersUpdated', data);
+		var members = serverData.getGroupByID( data.groupId ).members;
+		io.to(data.room).emit('membersUpdated', {
+			groupId: data.groupId,
+			members: members
+		} );
 	});
 
 }
