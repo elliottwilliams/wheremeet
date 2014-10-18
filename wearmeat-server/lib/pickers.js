@@ -52,10 +52,10 @@ function distance( loc1, loc2 ){
 function pickSumDistance( destinations, members ){
 	var minDest = destinations[0];
 	var minDist = Number.MAX_VALUE;
-	for( int destI=0; destI<destinations.length; destI++ ){
+	for( var destI=0; destI<destinations.length; destI++ ){
 		var sumDists = 0;
-		for( int memI=0; memI < members.length; memI++){
-			sumDists += distance( destination[destI].location,
+		for( var memI=0; memI < members.length; memI++){
+			sumDists += distance( destinations[destI].location,
 					members[memI].location );
 		}
 		if( sumDists<minDist ){
@@ -66,7 +66,33 @@ function pickSumDistance( destinations, members ){
 	return minDest;
 }
 
-console.log( distance( {latitude:10,longitude:20}, 
-	{latitude:20,longitude:25} ) );
+/*console.log( distance( {latitude:10,longitude:20}, 
+	{latitude:20,longitude:25} ) ); */
+var dests = [
+	{ name:'Wiley', 
+		location:{ longitude:20.000, 
+			latitude:20.000}
+	},
+	{ name:'Windsor',
+		location: {longitude:20.020,
+			latitude:20.010}
+	}
+]
+var members = [
+	{ id: "lol",
+		name: "Joey",
+		location:{ longitude:20.0001,
+			latitude:20.005 }
+	},
+	{ id: "lol2",
+		name: "Big Mike",
+		location:{ longitude:20.019,
+			latitude:20.011 }
+	}
+]
+console.log( pickSumDistance(dests, members) );
+
+
+
 
 debugger;

@@ -9,12 +9,7 @@ CLIENT-TO-SERVER MESSAGES:
 join
 {
   clientId: client id
-}
-
-setName
-{
-  clientId: client id
-  name: the person's name
+  name: uhhh name
 }
 
 updateLocation
@@ -51,4 +46,9 @@ members
 joined
 {
   groupId: group id
+}
+
+doesNotExist
+{
+  stuff
 }
