@@ -49,10 +49,11 @@ function addMember( groupID, member ){
 			return;
 		}
 	}
-	group.push( member );
+	groups.push( member );
 }
 
 module.exports.groups = groups;
 module.exports.getGroupByID = getGroupByID;
 module.exports.addMember = addMember;
-
+module.exports.createGroup = createGroup;
+module.exports.addGroup = addGroup;

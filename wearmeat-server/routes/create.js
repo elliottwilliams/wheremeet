@@ -35,10 +35,12 @@ router.post('/', function(req, res){
 			location: { longitude:20.021,
 				latitude:20.011 }
 	};
-	addMember( groupId, member);
+	data.addMember( groupId, member);
 
 	//redirect to new page
 	res.redirect( "/"+groupId );
+
+	console.log(data.groups);
 });
 
 module.exports = router;
