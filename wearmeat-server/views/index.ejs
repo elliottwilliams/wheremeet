@@ -20,8 +20,18 @@
         console.log('connected to socket');
 
         socket.emit('join', {
-          room: ROOM
-        });
+            groupId: ROOM,
+            clientId: 1337,
+            location: {longitude: 20, latitude: 19.5}
+          },
+	  function(ackMsg){
+            if(ackMsg.error!==null){
+              console.log(ackMsg.error);
+            } else {
+              console.log(ackMsg.groupId);
+            }
+	  }
+        );
 
         socket.on('joined', function(data) {
           console.log('someone joined');
