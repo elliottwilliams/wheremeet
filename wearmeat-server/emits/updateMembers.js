@@ -10,4 +10,4 @@ function emitUpdateMembers(io,groupId){
 	);
 }
 
-module.exports.emitUpdateMembers = emitUpdateMembers;
+module.exports = emitUpdateMembers;
