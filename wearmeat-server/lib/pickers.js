@@ -42,6 +42,10 @@ function distance( loc1, loc2 ){
 }
 
 
+/*
+ * Actual picker functions
+ *
+ */
 
 
 console.log( distance( {latitude:10,longitude:20}, 
