@@ -1,6 +1,7 @@
 // var io = require('../io');
 
 var data = require('../lib/data');
+var updateMem = require('../emits/updateMembers.js');
 
 module.exports = function(socket, io) {
 
@@ -27,10 +28,13 @@ module.exports = function(socket, io) {
 			socket.join( msg.groupId );
 			
 			fn( {groupId: msg.groupId} );
+
+			//io.to(msg.groupId).emit('updateMembers', {/*update member object*/} );
+			updateMem.emitUpdateMembers(io,msg.groupId);
 		} else {
 
 			console.log( 'join unsuccesfull' );
-			fn( {error: "Group ID "+msg.groupId+" not found"} );
+			fn( {error: 'Group ID '+msg.groupId+' not found'} );
 
 		}
 	});
