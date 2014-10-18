@@ -1,12 +1,21 @@
-<ion-view title="Map">
-  <ion-content class="padding">
-    <h1>Yo</h1>
+<ion-view title="WEARMEAT">
+  <ion-content scroll="false">
 
-    <ui-gmap-google-map center="map.center" zoom="map.zoom"
-        draggable="true">
+    <ui-gmap-google-map class="wearmeat-map"
+      center="map.center" zoom="map.zoom"
+      options="options" draggable="true">
 
-        <!-- other ui-gmap-directives here -->
+      <!-- other ui-gmap-directives here -->
 
     </ui-gmap-google-map>
+
+    <div class="wearmeat-dest-card card">
+      <div class="item item-text-wrap">
+        Go to
+        <h2>WINDSOR</h2>
+        0.1mi away
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>

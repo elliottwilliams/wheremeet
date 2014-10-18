@@ -1,7 +1,17 @@
 angular.module('wearmeat.controllers', [])
 
-.controller('MapCtrl', function($scope) {
-
+.controller('MapCtrl', function($scope, googleMapApi) {
+  console.debug('loaded with googleMapApi', googleMapApi);
+  $scope.options = {
+    disableDefaultUI: true
+  }
+  $scope.map = {
+      center: {
+          latitude: 45,
+          longitude: -73
+      },
+      zoom: 8
+  };
 })
 
 .controller('DashCtrl', ['$scope', 'GoogleMapApi'.ns(), function ($scope, GoogleMapApi) {
