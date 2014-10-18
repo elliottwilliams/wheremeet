@@ -13,13 +13,20 @@
     <script type="text/javascript">
       var socket = io();
 
+      var ROOM = '<%= room %>';
+
       socket.on('connect', function() {
 
         console.log('connected to socket');
 
         socket.emit('join', {
-          foo: 'bar'
+          room: ROOM
         });
+
+        socket.on('joined', function(data) {
+          console.log('someone joined');
+          console.log(data);
+        })
       })
 
       

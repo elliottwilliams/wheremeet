@@ -7,7 +7,7 @@ io.on('connection', function(socket) {
 
   events.forEach(function(evtRegister) {
 
-    evtRegister(socket);
+    evtRegister(socket, io);
 
   });
 
