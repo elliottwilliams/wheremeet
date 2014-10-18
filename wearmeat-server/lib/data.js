@@ -19,6 +19,17 @@ Each Group:
 
 var groups = [];
 
+function createGroup( id, dests ){
+	return { ID: id,
+		destinations: dests,
+		members: []
+	};
+}
+//No collision checks, but groups should be unique anyway
+function addGroup( group ){
+	groups.push(group);
+}
+
 function getGroupByID( id ){
 	for( var i=0; i<groups.length; i++){
 		if( groups[i].ID === id ){
@@ -28,10 +39,17 @@ function getGroupByID( id ){
 	return NULL;
 }
 
-//No protection against null pointer exceptions, 
-//	allows you to catch errors
+//used to both add new members and update old members
+//members store their own id's
 function addMember( groupID, member ){
-	getGroupByID( groupID ).push( member );
+	var group = getGroupByID( groupID );
+	for( var i=0; i<group.members.length; i++){
+		if( member.ID===group.members[i].ID ){
+			group.members[i] = member;
+			return;
+		}
+	}
+	group.push( member );
 }
 
 module.exports.groups = groups;

@@ -95,4 +95,4 @@ console.log( pickSumDistance(dests, members) );
 
 
 
-debugger;
+//debugger;
