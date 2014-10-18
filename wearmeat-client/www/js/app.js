@@ -25,7 +25,13 @@ angular.module('wearmeat', [
 
     .state('map', {
       url: '/map',
-      templateUrl: 'templates/map.html'
+      templateUrl: 'templates/map.html',
+      controller: 'MapCtrl',
+      resolve: {
+        googleMapApi: ['GoogleMapApi'.ns(), function(GoogleMapApi) {
+          return GoogleMapApi;
+        }]
+      }
     })
 
     // setup an abstract state for the tabs directive
@@ -33,23 +39,6 @@ angular.module('wearmeat', [
       url: "/tab",
       abstract: true,
       templateUrl: "templates/tabs.html"
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      },
-      resolve: {
-        googleMapApi: ['GoogleMapApi'.ns(), function(GoogleMapApi) {
-          return GoogleMapApi;
-        }]
-      }
     })
 
     .state('tab.friends', {

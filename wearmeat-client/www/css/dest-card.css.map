@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,mBAAoB;EAElB,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,GAAG",
+"sources": ["../../scss/dest-card.scss"],
+"names": [],
+"file": "dest-card.css"
+}
