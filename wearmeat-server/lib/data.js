@@ -41,8 +41,22 @@ function getGroupByID( id ){
 	return null;
 }
 
+function getMember( groupID, memberID ){
+	var group = getGroupByID( groupID );
+	for( var i=0; i<group.members.length; i++){
+		if( memberID===group.members[i].ID ){
+			return group.members[i];
+		}
+	}
+	return null;
+}
+function updateLocation( groupID, memberID, location ){
+	getMember(groupID,memberID).location = location;
+}
+//DEPRECATED
 //used to both add new members and update old members
 //members store their own id's
+//Currently unsafe if groupID doesn't exit, needs to be checked in calling code
 function addMember( groupID, member ){
 	var group = getGroupByID( groupID );
 	for( var i=0; i<group.members.length; i++){
