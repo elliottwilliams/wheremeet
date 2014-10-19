@@ -2,6 +2,7 @@
 
 var data = require('../lib/data');
 var updateMem = require('../emits/updateMembers.js');
+var getDests = require('../emits/getDestinations.js');
 
 module.exports = function(socket, io) {
 
@@ -27,10 +28,14 @@ module.exports = function(socket, io) {
 			
 			socket.join( msg.groupId );
 
-			fn( {groupId: msg.groupId} );
+			//Get the destinations, only for the joining person's socket
+			getDests(socket,msg.groupId);
 
-			//io.to(msg.groupId).emit('updateMembers', {/*update member object*/} );
+			//Broadcast member update to everyone else
 			updateMem.emitUpdateMembers(io,msg.groupId);
+
+
+			fn( {groupId: msg.groupId} );//send acknowledgement function
 		} else {
 
 			console.log( 'join unsuccesfull' );

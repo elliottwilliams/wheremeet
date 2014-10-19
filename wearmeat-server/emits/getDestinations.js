@@ -1,7 +1,7 @@
 var serverData = require('../lib/data');
 
-function emitGetDestinations(io,groupId){
-	io.to( groupId ).emit(
+function emitGetDestinations(socket,groupId){
+	socket.emit(
 		'getDestinations', 
 		{ 
 			groupId: groupId,

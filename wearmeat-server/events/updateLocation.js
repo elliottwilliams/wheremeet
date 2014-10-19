@@ -1,7 +1,7 @@
 // var io = require('../io');
 
 var serverData = require('../lib/data');
-var emitDest = require('../emits/updateChosenDestination');
+var emitIdealDest = require('../emits/updateChosenDestination');
 
 module.exports = function(socket, io) {
 
@@ -24,7 +24,7 @@ module.exports = function(socket, io) {
 				group.destinations,
 				group.members
 			);
-			emitDest(io, data.groupId, idealDest);
+			emitIdealDest(io, data.groupId, idealDest);
 			
 		} else {
 			console.log( 'nonexistent member tried to update his location' );
