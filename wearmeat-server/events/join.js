@@ -15,17 +15,19 @@ module.exports = function(socket, io) {
 		//   room: same as groupID
 		// }
 		console.log(msg.name + ' tryed to join in room ' + msg.groupId, msg);
-		
+
 		if( data.getGroupByID(msg.groupId)!==null ){
 
+			console.log('group found')
+
 			var member = {
-				ID: msg.clientId,
+				id: msg.clientId,
 				name: msg.name,
 				location: null
 			} //member's location field is null to start
 			//you MUST check when displaying based on location
 			data.addMember( msg.groupId, member );
-			
+
 			socket.join( msg.groupId );
 
 			//Get the destinations, only for the joining person's socket

@@ -2,16 +2,16 @@
 /*
  * Creates and exports the Groups array
 Each Group:
-	ID: several character string
+	id: several character string
 	options: things that we will implement LATER
 	destinations: array of destinations
-		ID: string
+		id: string
 		name: name
 		location: location object
 			longitude
 			latitude
 	members: array of members
-		ID: "unique", or at least unlikely overlap
+		id: "unique", or at least unlikely overlap
 		name: name
 		location:
 			longitude
@@ -21,7 +21,7 @@ Each Group:
 var groups = [];
 
 function createGroup( id, opts, dests ){
-	return { ID: id,
+	return { id: id,
 		options: opts,
 		destinations: dests,
 		members: []
@@ -34,7 +34,7 @@ function addGroup( group ){
 
 function getGroupByID( id ){
 	for( var i=0; i<groups.length; i++){
-		if( groups[i].ID === id ){
+		if( groups[i].id === id ){
 			return groups[i];
 		}
 	}
@@ -43,8 +43,10 @@ function getGroupByID( id ){
 
 function getMember( groupID, memberID ){
 	var group = getGroupByID( groupID );
+	if (!group) return null;
+
 	for( var i=0; i<group.members.length; i++){
-		if( memberID===group.members[i].ID ){
+		if( memberID===group.members[i].id ){
 			return group.members[i];
 		}
 	}
@@ -59,7 +61,7 @@ function updateLocation( groupID, memberID, location ){
 function addMember( groupID, member ){
 	var group = getGroupByID( groupID );
 	for( var i=0; i<group.members.length; i++){
-		if( member.ID===group.members[i].ID ){
+		if( member.id===group.members[i].id ){
 			group.members[i] = member;
 			return;
 		}
@@ -72,3 +74,5 @@ module.exports.getGroupByID = getGroupByID;
 module.exports.addMember = addMember;
 module.exports.createGroup = createGroup;
 module.exports.addGroup = addGroup;
+module.exports.getMember = getMember;
+module.exports.updateLocation = updateLocation;

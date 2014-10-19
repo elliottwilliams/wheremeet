@@ -1,0 +1,50 @@
+<ion-view title="WHEREMEET.me">
+  <ion-content scroll="false">
+
+    <ui-gmap-google-map class="wearmeat-map"
+      center="map.center" zoom="map.zoom"
+      options="options" draggable="true">
+
+      <!-- other ui-gmap-directives here -->
+
+      <!-- <ui-gmap-markers
+        models="destinations"
+        idKey="id"
+        fit="true"
+        labelContent="name"
+        icon="img/unchosenDestination.svg"> -->
+
+      <div ng-repeat="dest in destinations">
+        <ui-gmap-marker
+          idKey="dest.id"
+          coords="dest.location"
+          icon="(dest.id == chosenDestination.id)
+                  ? 'img/chosenDestination.svg'
+                  : 'img/unchosenDestination.svg'"
+          options="{labelContent: dest.name,
+                    labelClass: (dest.id == chosenDestination.id)
+                      ? 'wearmeat-label-dc-chosen wearmeat-label-dc h5'
+                      : 'wearmeat-label-dc h5'}">
+      </div>
+
+      <div ng-repeat="member in members">
+        <ui-gmap-marker
+          ng-if="member.location"
+          idKey="member.id"
+          coords="member.location"
+          icon="'img/genericPerson.svg'"
+          options="{labelContent: member.name, labelClass: 'wearmeat-label-dc h5'}">
+      </div>
+
+    </ui-gmap-google-map>
+
+    <div class="wearmeat-dest-card card" ng-if="chosenDestination">
+      <div class="item item-text-wrap">
+        Go to
+        <div class="wearmeat-dest-card-name">{{chosenDestination.name}}</div>
+        {{distanceFromChosen}} mi away
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

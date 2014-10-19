@@ -13,14 +13,14 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res){
 	var groupId = createGroupId();
-	var newGroup = data.createGroup( groupId, 
+	var newGroup = data.createGroup( groupId,
 		buildOptions(req),
 		buildDests(req)  );
 	data.addGroup( newGroup );
 
 	//redirect to new page
 	//The first member will be added then
-	res.redirect( "/?id="+groupId );
+	res.redirect( "/#/map?groupId="+groupId );
 
 	console.log(data.groups);
 });

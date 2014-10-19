@@ -15,7 +15,7 @@
 
 /*
  * Helper and Extensibility functions
- * 
+ *
  */
 function getLong (loc){
 	return loc.longitude;
@@ -55,8 +55,12 @@ function pickSumDistance( destinations, members ){
 	for( var destI=0; destI<destinations.length; destI++ ){
 		var sumDists = 0;
 		for( var memI=0; memI < members.length; memI++){
-			sumDists += distance( destinations[destI].location,
-					members[memI].location );
+
+			if (members[memI].location != null) {
+				sumDists += distance( destinations[destI].location,
+						members[memI].location );
+			}
+
 		}
 		if( sumDists<minDist ){
 			minDist = sumDists;
@@ -68,11 +72,11 @@ function pickSumDistance( destinations, members ){
 
 module.exports.pickSumDistance = pickSumDistance;
 
-/*console.log( distance( {latitude:10,longitude:20}, 
+/*console.log( distance( {latitude:10,longitude:20},
 	{latitude:20,longitude:25} ) ); * /
 var dests = [
-	{ name:'Wiley', 
-		location:{ longitude:20.000, 
+	{ name:'Wiley',
+		location:{ longitude:20.000,
 			latitude:20.000}
 	},
 	{ name:'Windsor',
