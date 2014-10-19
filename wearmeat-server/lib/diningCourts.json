@@ -1,0 +1,27 @@
+[ 
+	{ name:'Wiley',
+		id:69,
+		location:{ latitude:40.428658,
+			longitude:-86.920708}
+	},
+	{ name:'Ford',
+		id:6969,
+		location: { latitude:40.431925,
+			longitude:-86.91958 }
+	},
+	{ name:'Windsor',
+		id:696969,
+		location: { latitude:40.427014, 
+			longitude:-86.920925 }
+	},
+	{ name:'Earhart',
+		id:420,
+		location: { latitude:40.425569, 
+			longitude:-86.925106 }
+	},
+	{ name:'Hillenbrand',
+		id:420420,
+		location: { latitude:40.426622, 
+			longitude:-86.926770 }
+	}
+]
