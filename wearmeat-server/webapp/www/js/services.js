@@ -4,31 +4,6 @@ angular.module('wearmeat.services', [
 
 .value('serverURL', '/')
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
-
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
-    }
-  }
-})
-
 // Server SocketIO transport
 .factory('socket', function (serverURL) {
 
@@ -95,4 +70,30 @@ angular.module('wearmeat.services', [
     })
   }
 
+})
+
+.factory('distance', function(){
+	
+	function getLong (loc){
+		return loc.longitude;
+	}
+	function getLat (loc){
+		return loc.latitude;
+	}
+	function toRad( deg ){
+		return deg * Math.PI / 180;
+	}
+	
+	return function(loc1, loc2){
+		var R = 3963.1676;
+		var lat1 = toRad( getLat(loc1) );
+		var lat2 = toRad( getLat(loc2) );
+		var dLat = lat1 - lat2;
+		var dLong = toRad( getLong(loc1)-getLong(loc2) );
+		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+			Math.cos(lat1) * Math.cos(lat2) *
+			Math.sin(dLong/2) * Math.sin(dLong/2);
+		var c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a) );
+		return c*R;
+	}
 })
