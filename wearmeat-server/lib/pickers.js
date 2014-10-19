@@ -98,7 +98,7 @@ function pick( destinations, members, options){
 	if( options.type==="linear" ){
 		return pickSumDistance( destinations, members);
 	} else if ( options.type==="balanced" ){
-		return pickSquareSumDistance( distances, members);
+		return pickSquareSumDistance( destinations, members);
 	} else {
 		return pickSumDistance( destinations, members);
 	}
