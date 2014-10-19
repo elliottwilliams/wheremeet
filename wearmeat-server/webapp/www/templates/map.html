@@ -1,4 +1,15 @@
-<ion-view title="WHEREMEET.me">
+<ion-view title="WHEREMEET">
+  <ion-nav-buttons side="left">
+    <button class="button button-outline button-assertive" ui-sref="create">
+      Leave
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button" ng-controller="MapSharePopupCtrl"
+    ng-click="showSharePopup()">
+      Share
+    </button>
+  </ion-nav-buttons>
   <ion-content scroll="false">
 
     <ui-gmap-google-map class="wearmeat-map"
@@ -48,3 +59,9 @@
 
   </ion-content>
 </ion-view>
+
+
+<script id="map-share-popup.html" type="text/ng-template">
+  <input class="map-share-popup-textfield" type="text"
+  value="{{serverURL}}#/map?groupId={{groupId}}">
+</script>

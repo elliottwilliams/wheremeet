@@ -4,6 +4,7 @@ angular.module('wearmeat.services', [
 ])
 
 .value('serverURL', '/')
+.value('serverAbsoluteURL', 'http://wheremeet.me/')
 
 // Server SocketIO transport
 .factory('socket', function (socketFactory, serverURL) {
@@ -76,7 +77,7 @@ angular.module('wearmeat.services', [
 })
 
 .factory('distance', function(){
-	
+
 	function getLong (loc){
 		return loc.longitude;
 	}
@@ -86,7 +87,7 @@ angular.module('wearmeat.services', [
 	function toRad( deg ){
 		return deg * Math.PI / 180;
 	}
-	
+
 	return function(loc1, loc2){
 		var R = 3963.1676;
 		var lat1 = toRad( getLat(loc1) );

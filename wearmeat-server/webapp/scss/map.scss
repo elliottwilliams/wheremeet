@@ -1,4 +1,5 @@
 $chosen-color: #4789c0;
+$dark-border: #444;
 
 .angular-google-map {
   display: block;
@@ -16,10 +17,16 @@ $chosen-color: #4789c0;
 .wearmeat-label-dc {
   background: #fff;
   padding: 0.2em 0.4em;
-  border: #444 solid 1px;
+  border: $dark-border solid 0.2em;
   text-transform: uppercase;
 }
 
 .wearmeat-label-dc-chosen {
   box-shadow: 0 0 10px $chosen-color;
+}
+
+
+// Popup
+.map-share-popup-textfield[type="text"] {
+  border: $dark-border solid 0.2em;
 }

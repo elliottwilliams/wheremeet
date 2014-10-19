@@ -9,17 +9,52 @@
     <h3>Get Started</h3>
     <h4>Dining courts you're interested in going to:</h4>
 
-    <li class="item item-checkbox">
-       <label class="checkbox">
-         <input type="checkbox">
-       </label>
-       Flux Capacitor
-    </li>
+    <ul ng-repeat="court in diningCourts">
+
+      <li class="item item-checkbox">
+         <label class="checkbox">
+           <input type="checkbox" ng-model="court.selected">
+         </label>
+         {{court.name}}
+      </li>
+
+    </ul>
+
+    <h4>Method of calculating distance:</h4>
+
+    <div class="list">
+
+      <label class="item item-radio">
+        <input type="radio" value="linear" ng-model="decisionAlgorithm">
+        <div class="item-content">
+          Linear
+          <div class="wearmeat-create-method-description">
+            Minimizes the total distance everyone has to walk.
+          </div>
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+
+      <label class="item item-radio">
+        <input type="radio" value="balanced" ng-model="decisionAlgorithm">
+        <div class="item-content">
+          Balanced
+          <div class="wearmeat-create-method-description">
+            Tries to keep any specific person from having to walk too far.
+          </div>
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+
+    </div>
 
 
-    <button class="button button-full button-positive">
-      Get Started
+
+    <button class="button button-full button-positive" ng-click="createGroup()">
+      Continue
     </button>
+
+
 
     <p class="wearmeat-create-disclaimer">
       We'll ask for your location. It's used to find your position relative to

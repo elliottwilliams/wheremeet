@@ -24,7 +24,7 @@ angular.module('wearmeat', [
   $stateProvider
 
   .state('map', {
-    url: '/map?groupId',
+    url: '/map?groupId?share',
     templateUrl: 'templates/map.html',
     controller: 'MapCtrl',
     resolve: {

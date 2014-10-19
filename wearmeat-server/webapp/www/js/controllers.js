@@ -68,9 +68,72 @@ socket, clientId, handleError, getLocation, joinedGroup, distance) {
   });
 
 
+})
+
+.controller('MapSharePopupCtrl', function ($scope, serverAbsoluteURL,
+$ionicPopup, $stateParams) {
+
+  $scope.serverURL = serverAbsoluteURL;
+
+  $scope.showSharePopup = function showSharePopup () {
+    console.debug('opening map share popup');
+
+    $ionicPopup.show({
+      title: 'Share this URL',
+      templateUrl: 'map-share-popup.html',
+      scope: $scope,
+      buttons: [
+      {
+          text: 'GOTCHA',
+          type: 'button-positive',
+          onTap: function(e) {
+            // Returning a value will cause the promise to resolve with the given value.
+            return true;
+          }
+        }
+      ]
+    });
+
+  };
+
+  if ($stateParams.share) {
+    $scope.showSharePopup();
+  }
 
 })
 
-.controller('CreateCtrl', function ($scope) {
+.controller('CreateCtrl', function ($scope, $http, $state) {
+
+  $scope.diningCourts = [];
+  $scope.decisionAlgorithm = 'linear';
+
+  $http.get('/public/diningCourts.json').success(function (courts) {
+    courts = courts.map(function (c) {
+      c.selected = true;
+      return c;
+    });
+    $scope.diningCourts = courts;
+  });
+
+  $scope.createGroup = function createGroup () {
+
+    var data = {};
+    var selectedCourts = $scope.diningCourts.filter(function (c) {
+      return c.selected; }).map(function (c) { return c.name });
+
+    selectedCourts.forEach(function (c) {
+      data[c] = true;
+    });
+
+    data.decisionAlgorithm = $scope.decisionAlgorithm;
+    data.json = true;
+
+    console.debug('creating group with these parameters: ', data);
+
+    $http.post('/create', data).success(function (response) {
+      $state.go('map', {groupId: response.groupId, share: true});
+    });
+
+  };
 
 })

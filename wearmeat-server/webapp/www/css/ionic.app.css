@@ -8901,11 +8901,14 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 .wearmeat-label-dc {
   background: #fff;
   padding: 0.2em 0.4em;
-  border: #444 solid 1px;
+  border: #444 solid 0.2em;
   text-transform: uppercase; }
 
 .wearmeat-label-dc-chosen {
   box-shadow: 0 0 10px #4789c0; }
+
+.map-share-popup-textfield[type="text"] {
+  border: #444 solid 0.2em; }
 
 .wearmeat-dest-card {
   position: absolute;
@@ -8928,5 +8931,10 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   margin-top: 2em;
   font-size: 0.8em;
   line-height: 1.2em; }
+
+.wearmeat-create-method-description {
+  font-size: 0.8em;
+  line-height: 1.2em;
+  white-space: normal; }
 
 /*# sourceMappingURL=ionic.app.css.map */

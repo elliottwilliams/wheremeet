@@ -14,9 +14,14 @@ router.post('/', function(req, res){
 		buildDests(req)  );
 	data.addGroup( newGroup );
 
-	//redirect to new page
-	//The first member will be added then
-	res.redirect( "/#/map?groupId="+groupId );
+	if (req.body.json) {
+		// If request is JSON, send back the group id as a response
+		res.send({groupId: groupId});
+	} else {
+		//redirect to new page
+		//The first member will be added then
+		res.redirect( "/#/map?groupId="+groupId );
+	}
 
 	console.log(data.groups);
 });
