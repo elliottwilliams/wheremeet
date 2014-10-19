@@ -22,9 +22,10 @@ module.exports = function(socket, io) {
 
 			//Pick the (possibly new) best dest and send it off
 			var group = serverData.getGroupByID(data.groupId)
-			var idealDest = pickers.pickSumDistance(
+			var idealDest = pickers.pick(
 				group.destinations,
-				group.members
+				group.members,
+				group.options
 			);
 			emitIdealDest(io, data.groupId, idealDest);
 

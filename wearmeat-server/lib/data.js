@@ -3,7 +3,10 @@
  * Creates and exports the Groups array
 Each Group:
 	id: several character string
-	options: things that we will implement LATER
+	options: 
+		type: possible options:
+			"linear"
+			"balanced"
 	destinations: array of destinations
 		id: string
 		name: name

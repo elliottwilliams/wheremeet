@@ -70,33 +70,39 @@ function pickSumDistance( destinations, members ){
 	return minDest;
 }
 
-module.exports.pickSumDistance = pickSumDistance;
+function pickSquareSumDistance( destinations, members ){
+	var minDest = destinations[0];
+	var minDist = Number.MAX_VALUE;
+	for( var destI=0; destI<destinations.length; destI++ ){
+		var sumDists = 0;
+		for( var memI=0; memI < members.length; memI++){
 
-/*console.log( distance( {latitude:10,longitude:20},
-	{latitude:20,longitude:25} ) ); * /
-var dests = [
-	{ name:'Wiley',
-		location:{ longitude:20.000,
-			latitude:20.000}
-	},
-	{ name:'Windsor',
-		location: {longitude:20.020,
-			latitude:20.010}
-	}
-]
-var members = [
-	{ id: "lol",
-		name: "Joey",
-		location:{ longitude:20.0001,
-			latitude:20.005 }
-	},
-	{ id: "lol2",
-		name: "Big Mike",
-		location:{ longitude:20.019,
-			latitude:20.011 }
-	}
-]
-console.log( pickSumDistance(dests, members) ); */
+			if (members[memI].location != null) {
+				var dist = distance( destinations[destI].location,
+						members[memI].location );
+				sumDists += dist*dist;
+			}
 
-//debugger;
+		}
+		if( sumDists<minDist ){
+			minDist = sumDists;
+			minDest = destinations[destI];
+		}
+	}
+	return minDest;
+}
+
+//BY DEFAULT, just used linear. If methods don't change based on options
+//find the errors by having this return null by default
+function pick( destinations, members, options){
+	if( options.type==="linear" ){
+		return pickSumDistance( destinations, members);
+	} else if ( options.type==="balanced" ){
+		return pickSquareSumDistance( distances, members);
+	} else {
+		return pickSumDistance( destinations, members);
+	}
+}
+
+module.exports.pick = pick;
 

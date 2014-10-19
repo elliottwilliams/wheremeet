@@ -3,13 +3,8 @@ var router = express.Router();
 var data = require('../lib/data');
 var diningCourts = require('../lib/diningCourts.json');
 
-/* GET home page. * /
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-}); */
-
-router.get('/', function(req, res) {
-	res.render('create');
+	res.render('create', {diningCourts: diningCourts});
 });
 
 router.post('/', function(req, res){
@@ -31,11 +26,24 @@ function createGroupId(){
 	var groupId = ""+Math.floor( 1000000*Math.random() );
 	return groupId;
 }
+//Currently only works with one dining courts json file
+//Hard to extend beyond (purdue) dining courts
 function buildDests( req ){
-	return diningCourts;
+	var dests = [];
+	var j=0;
+	for( var i=0; i<diningCourts.length; i++){
+		if( req.body[diningCourts[i].name] ){
+			dests[j]=diningCourts[i];
+			j++;
+		}
+	}
+	return dests;
 }
 function buildOptions( req ){
-	return {};
+	return {
+		type: req.body.decisionAlgorithm
+	};
 }
 
 module.exports = router;
+

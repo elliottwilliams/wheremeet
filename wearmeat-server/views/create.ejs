@@ -7,7 +7,25 @@
   <h1>Create a group:</h1>
 
   <form action="/create" method="POST">
+  	<% for( var i=0; i<diningCourts.length; i++){  %>
+  		<label>
+  			<input type='checkbox' name='<%=  diningCourts[i].name  %>' checked>
+  			<%= diningCourts[i].name %>
+  		</label>
+  	<% } %>
+  	
+  	<label>
+  		<input type='radio' name='decisionAlgorithm' value='linear' checked>
+  		linear
+  		<i> Returns the destination that minimizes the total distance everyone has to walk </i> 
+  	</label>
+  	<label>
+  		<input type='radio' name='decisionAlgorithm' value='balanced'>
+  		balanced
+  		<i> Tries to keep any specific person from having to walk too far</i> 
+  	</label>
     <input type="submit">
+    
   </form>
 
 </body>
