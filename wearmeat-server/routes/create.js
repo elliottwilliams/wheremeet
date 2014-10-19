@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var data = require('../lib/data');
-var diningCourts = require('../lib/diningCourts.json');
+var diningCourts = require('../public/diningCourts.json');
 
 router.get('/', function(req, res) {
 	res.render('create', {diningCourts: diningCourts});
