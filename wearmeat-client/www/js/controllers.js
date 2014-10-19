@@ -6,13 +6,95 @@ socket, clientId, handleError) {
   $scope.options = {
     disableDefaultUI: true
   }
+
+  $scope.destinations = {};
+  $scope.chosenDestination = null;
+  $scope.distanceFromChosen = 'X.XX';
+  $scope.members = {};
+
+
+  function getDestinationsEvent (msg) {
+    console.debug('getDestinationsEvent', msg);
+    if (msg.error) return handleError(msg.error);
+    $scope.destinations = msg.destinations;
+  }
+
+  function updateMembersEvent (msg) {
+    console.debug('updateMembersEvent', msg);
+    if (msg.error) return handleError(msg.error);
+    $scope.members = msg.members;
+  }
+
+  function updateChosenDestination (msg) {
+    console.debug('updateChosenDestination', msg);
+    if (msg.error) return handleError(msg.error);
+    $scope.chosenDestination = msg.chosenDestination;
+  }
+
+  // DEMO DATA <3
   $scope.map = {
       center: {
-          latitude: 45,
-          longitude: -73
+          latitude: '40.428657',
+          longitude: '-86.920836'
       },
-      zoom: 8
+      zoom: 15
   };
+
+  getDestinationsEvent({
+    groupId: 1337,
+    destinations: [
+      {
+        id: '1',
+        name: 'Wiley',
+        location: {
+          latitude: '40.428657', longitude: '-86.920836'
+        }
+      },
+      {
+        id: '2',
+        name: 'Hillenbrand',
+        location: {
+          latitude: '40.426729', longitude: '-86.926777'
+        }
+      },
+      {
+        id: '3',
+        name: 'Earhart',
+        location: {
+          latitude: '40.425598', longitude: '-86.925125'
+        }
+      }
+    ]
+  });
+
+  updateMembersEvent({
+    groupId: 1337,
+    members: [
+      {
+        id: '123',
+        name: 'Ada',
+        location: {
+          latitude: '40.427816', longitude: '-86.916663'
+        }
+      },
+      {
+        id: '456',
+        name: 'Alan',
+        location: {
+          latitude: '40.424287', longitude: '-86.921084'
+        }
+      }
+    ]
+  })
+
+  updateChosenDestination({
+    groupId: 1337,
+    chosenDestination: $scope.destinations[0]
+  })
+
+
+
+
 
   // Join the server at the specified channel
   socket.emit('join', {
