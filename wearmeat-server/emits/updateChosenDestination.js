@@ -1,7 +1,7 @@
 var serverData = require('../lib/data');
 var picker = require('../lib/pickers');
 
-function emitUpdateChosenDestination(io,groupId, memberId, chosenDest){
+function emitUpdateChosenDestination(io,groupId, chosenDest){
 	io.to( groupId ).emit(
 		'updateChosenDestination', 
 		{ 
