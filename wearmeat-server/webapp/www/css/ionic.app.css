@@ -8918,4 +8918,15 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   font-size: 1.4em;
   font-weight: bold; }
 
+.wearmeat-create {
+  line-height: 1.8em; }
+
+.wearmeat-create-subtitle {
+  font-size: 1.2em; }
+
+.wearmeat-create-disclaimer {
+  margin-top: 2em;
+  font-size: 0.8em;
+  line-height: 1.2em; }
+
 /*# sourceMappingURL=ionic.app.css.map */

@@ -1,13 +1,16 @@
 angular.module('wearmeat.services', [
-  'geolocation'
+  'geolocation',
+  'btford.socket-io'
 ])
 
 .value('serverURL', '/')
 
 // Server SocketIO transport
-.factory('socket', function (serverURL) {
+.factory('socket', function (socketFactory, serverURL) {
 
-  var socket = io(serverURL);
+  var socket = socketFactory({
+    ioSocket: io(serverURL)
+  });
 
   // app-level config of socket
   return socket;

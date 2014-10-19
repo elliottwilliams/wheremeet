@@ -66,8 +66,14 @@ angular.module('wearmeat', [
     }
   })
 
+  .state('create', {
+    url: '/',
+    templateUrl: 'templates/create.html',
+    controller: 'CreateCtrl'
+  })
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/map');
+  $urlRouterProvider.otherwise('/');
 
 })
 
