@@ -38,10 +38,18 @@ angular.module('wearmeat', [
 
         console.debug('joining group ' + $stateParams.groupId);
 
+        // Please please do something nicer in the future
+        var name = localStorage.getItem('wearmeat-name');
+        if (!name) {
+          name = prompt('Enter your name');
+          localStorage.setItem('wearmeat-name', name);
+        }
+
+
         console.debug('emitting join');
         socket.emit('join', {
           clientId: clientId,
-          name: 'name' + clientId,
+          name: name,
           groupId: $stateParams.groupId
 
         }, function (response) {
