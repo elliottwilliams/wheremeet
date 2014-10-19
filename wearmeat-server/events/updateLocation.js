@@ -1,6 +1,7 @@
 // var io = require('../io');
 
 var serverData = require('../lib/data');
+var emitDest = require('../emits/updateChosenDestination');
 
 module.exports = function(socket, io) {
 
@@ -16,6 +17,15 @@ module.exports = function(socket, io) {
 		
 		if( serverData.getMember(data.groupId, data.clientId)!==null ){
 			serverData.updateLocation( data.groupId, data.clientId, data.location );
+			
+			//Pick the (possibly new) best dest and send it off
+			var group = serverData.getGroupByID(data.groupId)
+			var idealDest = serverData.pickSumDistance( 
+				group.destinations,
+				group.members
+			);
+			emitDest(io, data.groupId, idealDest);
+			
 		} else {
 			console.log( 'nonexistent member tried to update his location' );
 		}

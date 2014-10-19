@@ -66,6 +66,8 @@ function pickSumDistance( destinations, members ){
 	return minDest;
 }
 
+module.exports.pickSumDistance = pickSumDistance;
+
 /*console.log( distance( {latitude:10,longitude:20}, 
 	{latitude:20,longitude:25} ) ); * /
 var dests = [
@@ -92,7 +94,5 @@ var members = [
 ]
 console.log( pickSumDistance(dests, members) ); */
 
-
-
-
 //debugger;
+

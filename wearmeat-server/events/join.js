@@ -26,7 +26,7 @@ module.exports = function(socket, io) {
 			data.addMember( msg.groupId, member );
 			
 			socket.join( msg.groupId );
-			
+
 			fn( {groupId: msg.groupId} );
 
 			//io.to(msg.groupId).emit('updateMembers', {/*update member object*/} );
