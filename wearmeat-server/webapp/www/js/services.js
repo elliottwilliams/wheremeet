@@ -1,9 +1,8 @@
 angular.module('wearmeat.services', [
-  'geolocation',
-  'btford.socket-io'
+  'geolocation'
 ])
 
-.value('serverURL', 'http://localhost:3000')
+.value('serverURL', '/')
 
 /**
  * A simple example service that returns some data.
@@ -31,10 +30,10 @@ angular.module('wearmeat.services', [
 })
 
 // Server SocketIO transport
-.factory('socket', function (socketFactory, serverURL) {
-  var socket = socketFactory({
-      ioSocket: io('http://localhost:3000')
-  });
+.factory('socket', function (serverURL) {
+
+  var socket = io(serverURL);
+
   // app-level config of socket
   return socket;
 
@@ -92,7 +91,7 @@ angular.module('wearmeat.services', [
       return myLocation;
 
     }, function() {
-      handleError("Wheremeet requires your location, so that we can show you on the map.")
+      handleError("Wearmeat requires your location, so that we can show you on the map.")
     })
   }
 

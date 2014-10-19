@@ -7,11 +7,13 @@ socket, clientId, handleError, getLocation, joinedGroup) {
     disableDefaultUI: true
   }
 
-  $scope.groupId = joinedGroup;
-  $scope.destinations = {};
+  console.debug('controller initiated with group: ', joinedGroup);
+
+  $scope.groupId = joinedGroup.groupId;
+  $scope.destinations = joinedGroup.destinations;
+  $scope.members = joinedGroup.members;
   $scope.chosenDestination = null;
   $scope.distanceFromChosen = 'X.XX';
-  $scope.members = {};
   $scope.myLocation = {};
 
 
@@ -98,11 +100,11 @@ socket, clientId, handleError, getLocation, joinedGroup) {
     $scope.myLocation = loc;
   });
 
+
   socket.on('updateMembers', updateMembersEvent);
-
   socket.on('updateChosenDestination', updateChosenDestinationEvent);
-
   socket.on('getDestinations', getDestinationsEvent);
+
 
 
 })

@@ -16,7 +16,9 @@ module.exports = function(socket, io) {
 		// }
 		console.log(msg.name + ' tryed to join in room ' + msg.groupId, msg);
 
-		if( data.getGroupByID(msg.groupId)!==null ){
+		var group = data.getGroupByID(msg.groupId);
+
+		if( group !==null ){
 
 			console.log('group found')
 
@@ -30,14 +32,11 @@ module.exports = function(socket, io) {
 
 			socket.join( msg.groupId );
 
-			//Get the destinations, only for the joining person's socket
-			getDests(socket,msg.groupId);
-
-			//Broadcast member update to everyone else
-			updateMem(io,msg.groupId);
-
-
-			fn( {groupId: msg.groupId} );//send acknowledgement function
+			fn( {
+				groupId: msg.groupId,
+				destinations: group.destinations,
+				members: group.members
+			} );//send acknowledgement function
 		} else {
 
 			console.log( 'join unsuccesfull' );

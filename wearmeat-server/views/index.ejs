@@ -11,33 +11,37 @@
     <p>Welcome to <%= title %></p>
 
     <script type="text/javascript">
-   //    var socket = io();
+      var socket = io();
 
-   //    var ROOM = '<%= room %>';
+      var ROOM = '<%= room %>';
 
-   //    socket.on('connect', function() {
+      socket.on('connect', function() {
 
-   //      console.log('connected to socket');
+        console.log('connected to socket');
 
-   //      socket.emit('join', {
-   //          groupId: ROOM,
-   //          clientId: 1337,
-   //          location: {longitude: 20, latitude: 19.5}
-   //        },
-	  // function(ackMsg){
-   //          if(ackMsg.error!==null){
-   //            console.log(ackMsg.error);
-   //          } else {
-   //            console.log(ackMsg.groupId);
-   //          }
-	  // }
-   //      );
+        socket.emit('join', {
+            groupId: ROOM,
+            clientId: 1337,
+          },
+	  function(ackMsg){
+            if(ackMsg.error!==null){
+              console.log(ackMsg.error);
+            } else {
+              console.log(ackMsg.groupId);
+            }
+	  }
+        );
 
-   //      socket.on('joined', function(data) {
-   //        console.log('someone joined');
-   //        console.log(data);
-   //      });
-   //    });
+        socket.on('updateMembers', function(data) {
+          console.log('updateMembers');
+          console.log(data);
+        });
+
+        socket.on('getDestinations', function(data) {
+          console.log('getDestinations');
+          console.log(data);
+        });
+      });
 
       
     </script>

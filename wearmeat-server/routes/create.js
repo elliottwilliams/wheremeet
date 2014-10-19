@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var data = require('../lib/data');
+var diningCourts = require('../lib/diningCourts.json');
 
 /* GET home page. * /
 router.get('/', function(req, res) {
@@ -31,17 +32,7 @@ function createGroupId(){
 	return groupId;
 }
 function buildDests( req ){
-	var dests = [
-		{ name:'Wiley',
-			location:{ longitude:20.000,
-				latitude:20.000}
-		},
-		{ name:'Windsor',
-			location: {longitude:20.020,
-				latitude:20.010}
-		}
-	]
-	return dests;
+	return diningCourts;
 }
 function buildOptions( req ){
 	return {};

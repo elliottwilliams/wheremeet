@@ -4,8 +4,7 @@ angular.module('wearmeat', [
   'ionic',
   'wearmeat.controllers',
   'wearmeat.services',
-  'google-maps'.ns(),
-  'btford.socket-io'
+  'google-maps'.ns()
 ])
 
 .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
@@ -53,7 +52,12 @@ angular.module('wearmeat', [
           }
 
           console.debug('Joined room ' + response.groupId, response);
-          return deferred.resolve(response.groupId);
+
+          return deferred.resolve({
+            groupId: response.groupId,
+            members: response.members,
+            destinations: response.destinations
+          });
 
         });
 
