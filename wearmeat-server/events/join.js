@@ -32,7 +32,7 @@ module.exports = function(socket, io) {
 			getDests(socket,msg.groupId);
 
 			//Broadcast member update to everyone else
-			updateMem.emitUpdateMembers(io,msg.groupId);
+			updateMem(io,msg.groupId);
 
 
 			fn( {groupId: msg.groupId} );//send acknowledgement function

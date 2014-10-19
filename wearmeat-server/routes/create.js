@@ -20,7 +20,7 @@ router.post('/', function(req, res){
 
 	//redirect to new page
 	//The first member will be added then
-	res.redirect( "/?="+groupId );
+	res.redirect( "/?id="+groupId );
 
 	console.log(data.groups);
 });
