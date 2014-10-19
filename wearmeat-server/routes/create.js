@@ -14,6 +14,12 @@ router.post('/', function(req, res){
 		buildDests(req)  );
 	data.addGroup( newGroup );
 
+	//remove the group after a full day
+	setTimeout( function(){
+		data.removeGroup( groupId );
+	}, 1000*60*60*24 );
+
+
 	if (req.body.json) {
 		// If request is JSON, send back the group id as a response
 		res.send({groupId: groupId});
