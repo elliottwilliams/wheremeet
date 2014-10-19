@@ -20,11 +20,12 @@ router.post('/', function(req, res){
 
 	//redirect to new page
 	//The first member will be added then
-	res.redirect( "/"+groupId );
+	res.redirect( "/?="+groupId );
 
 	console.log(data.groups);
 });
 
+//Several helper/extensibility functions
 function createGroupId(){
 	var groupId = ""+Math.floor( 1000000*Math.random() );
 	return groupId;
