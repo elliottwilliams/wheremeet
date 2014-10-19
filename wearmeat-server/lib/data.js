@@ -43,6 +43,13 @@ function getGroupByID( id ){
 	}
 	return null;
 }
+function removeGroup( id ){
+	for( var i=0; i<groups.length; i++){
+		if( groups[i].id === id ){
+			delete groups.splice(i,1);
+		}
+	}
+}
 
 function getMember( groupID, memberID ){
 	var group = getGroupByID( groupID );
@@ -77,5 +84,6 @@ module.exports.getGroupByID = getGroupByID;
 module.exports.addMember = addMember;
 module.exports.createGroup = createGroup;
 module.exports.addGroup = addGroup;
+module.exports.removeGroup = removeGroup;
 module.exports.getMember = getMember;
 module.exports.updateLocation = updateLocation;
