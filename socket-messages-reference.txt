@@ -6,6 +6,7 @@ All messages happen in a SocketIO room equivalent to the wearmeat group Id.
 
 CLIENT-TO-SERVER MESSAGES:
 
+(remember that the location isn't coming until updateLocation is sent)
 join
 {
   clientId: client id
