@@ -33,7 +33,7 @@ angular.module('wearmeat', [
       }],
 
       joinedGroup: function ($q, socket, clientId, $stateParams,
-      handleError, getName) {
+      handleError, getName, $ionicLoading) {
         var deferred = $q.defer();
 
         console.debug('joining group ' + $stateParams.groupId);
@@ -42,6 +42,11 @@ angular.module('wearmeat', [
         .then(function(name) {
           if (!name) return deferred.reject({error: "Could not get name"});
 
+          $ionicLoading.show({
+            template: 'Joining Group...',
+            delay: 200
+          });
+
           console.debug('emitting join');
           socket.emit('join', {
             clientId: clientId,
@@ -49,6 +54,8 @@ angular.module('wearmeat', [
             groupId: $stateParams.groupId
 
           }, function (response) {
+
+            $ionicLoading.hide();
 
             if (response.error) {
               handleError(response.error);
