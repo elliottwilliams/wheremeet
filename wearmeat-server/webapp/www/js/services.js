@@ -101,3 +101,69 @@ angular.module('wearmeat.services', [
 		return c*R;
 	}
 })
+
+
+.factory('getName', function ($q, $ionicPopup, $rootScope) {
+
+  /**
+   * Get the user's name, either by displaying a prompt asking for it, or by
+   * reading the name in localStorage
+   * @param  {Boolean} forceReprompt always prompt for name, even if a name
+   *                                 exists in localStorage
+   * @return {Promise}               resolved with name when action completed,
+   *                                 rejected if user cancels the prompt
+   */
+  return function getName(forceReprompt) {
+
+    var deferred = $q.defer();
+    var modalScope = $rootScope.$new();
+
+    modalScope.name = localStorage.getItem('wearmeat-name');
+    modalScope.errorText = null;
+
+    if (forceReprompt || !modalScope.name) {
+
+      $ionicPopup.show({
+        title: "Enter your name to join the group",
+        scope: modalScope,
+        templateUrl: 'name-prompt.html',
+        buttons: [
+          {
+            text: 'Leave',
+            type: 'button-default',
+            onTap: function (e) {
+              return false;
+            }
+          },
+          {
+            text: 'Join',
+            type: 'button-positive',
+            onTap: function (e) {
+              if (!modalScope.name) {
+                modalScope.errorText = "You'll need to enter your name before " +
+                  "you can join.";
+                e.preventDefault();
+              } else {
+                return modalScope.name;
+              }
+            }
+          }
+        ]
+      })
+      .then(function (name) {
+        if (name) {
+          localStorage.setItem('wearmeat-name', name);
+          deferred.resolve(name);
+        } else {
+          deferred.reject();
+        }
+      });
+
+    } else {
+      deferred.resolve(modalScope.name);
+    }
+
+    return deferred.promise;
+
+  }
+})

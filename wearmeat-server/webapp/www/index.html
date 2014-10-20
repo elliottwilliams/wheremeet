@@ -55,5 +55,11 @@
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
 
+    <!-- embedded templated -->
+    <script id="name-prompt.html", type="text/ng-template">
+      <input type="text" ng-model="$parent.name" placeholder="Name" autofocus>
+      <p class="text-center">{{errorText}}</p>
+    </script>
+
   </body>
 </html>

@@ -33,41 +33,39 @@ angular.module('wearmeat', [
       }],
 
       joinedGroup: function ($q, socket, clientId, $stateParams,
-      handleError) {
+      handleError, getName) {
         var deferred = $q.defer();
 
         console.debug('joining group ' + $stateParams.groupId);
 
-        // Please please do something nicer in the future
-        var name = localStorage.getItem('wearmeat-name');
-        if (!name) {
-          name = prompt('Enter your name');
-          localStorage.setItem('wearmeat-name', name);
-        }
+        getName()
+        .then(function(name) {
+          if (!name) return deferred.reject({error: "Could not get name"});
 
+          console.debug('emitting join');
+          socket.emit('join', {
+            clientId: clientId,
+            name: name,
+            groupId: $stateParams.groupId
 
-        console.debug('emitting join');
-        socket.emit('join', {
-          clientId: clientId,
-          name: name,
-          groupId: $stateParams.groupId
+          }, function (response) {
 
-        }, function (response) {
+            if (response.error) {
+              handleError(response.error);
+              return deferred.reject(response.error);
+            }
 
-          if (response.error) {
-            handleError(response.error);
-            return deferred.reject(response.error);
-          }
+            console.debug('Joined room ' + response.groupId, response);
 
-          console.debug('Joined room ' + response.groupId, response);
+            return deferred.resolve({
+              groupId: response.groupId,
+              members: response.members,
+              destinations: response.destinations
+            });
 
-          return deferred.resolve({
-            groupId: response.groupId,
-            members: response.members,
-            destinations: response.destinations
           });
 
-        });
+        })
 
         return deferred.promise;
       }

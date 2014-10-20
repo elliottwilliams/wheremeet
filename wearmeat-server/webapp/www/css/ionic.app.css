@@ -8888,6 +8888,23 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   -webkit-transition: none !important;
   transition: none !important; }
 
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  border: #444 solid 0.2em; }
+
 .angular-google-map {
   display: block;
   position: absolute;
@@ -8906,9 +8923,6 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 
 .wearmeat-label-dc-chosen {
   box-shadow: 0 0 10px #4789c0; }
-
-.map-share-popup-textfield[type="text"] {
-  border: #444 solid 0.2em; }
 
 .wearmeat-dest-card {
   position: absolute;

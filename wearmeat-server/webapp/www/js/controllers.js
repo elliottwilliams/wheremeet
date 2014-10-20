@@ -2,7 +2,7 @@ angular.module('wearmeat.controllers', [])
 
 .controller('MapCtrl', function($scope, $stateParams, googleMapApi,
 socket, clientId, handleError, getLocation, joinedGroup, distance) {
-  console.debug('loaded with googleMapApi', googleMapApi);
+
   $scope.options = {
     disableDefaultUI: true
   }
