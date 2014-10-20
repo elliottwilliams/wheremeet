@@ -102,7 +102,6 @@ angular.module('wearmeat.services', [
 	}
 })
 
-
 .factory('getName', function ($q, $ionicPopup, $rootScope) {
 
   /**

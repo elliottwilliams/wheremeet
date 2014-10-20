@@ -15,6 +15,8 @@ socket, clientId, handleError, getLocation, joinedGroup, distance) {
   $scope.chosenDestination = null;
   $scope.distanceFromChosen = 'X.XX';
   $scope.myLocation = {};
+  $scope.me = joinedGroup.members.filter(
+    function(m) { return m.id == clientId })[0];
 
 
   function getDestinationsEvent (msg) {
