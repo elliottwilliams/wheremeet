@@ -90,7 +90,7 @@ angular.module('wearmeat', [
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $location, $window) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -102,5 +102,12 @@ angular.module('wearmeat', [
       StatusBar.styleDefault();
     }
   });
+
+
+  // Send Google Analytics pageviews on state changes
+  $rootScope.$on('$stateChangeSuccess', function (event) {
+    if ($window.ga)
+      $window.ga('send', 'pageview', { page: $location.path() });
+  })
 
 })
