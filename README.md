@@ -1,6 +1,19 @@
 Wheremeet
 ========
 
+Wheremeet is an mobile web application that helps you and your friends find a place to meet up at. Currently, it's
+customized to work for the Purdue University dining courts.
+
+Contributions
+-------------
+
+* Any new features should be documented as issues the with "enhancement" label.
+* Work in feature branches corresponding to these issues. Name your branch using the convention `issue#-short-description`.
+* Submit pull requests from your feature branch back to master when you're done.
+
+Background
+----------
+
 ![Wheremeet mockup](http://cl.ly/image/1j0T3t2i3p1a/wearmeat-mockup.jpg)
 
 Clay and I and our friends are all part of the Purdue Dining Court system, and we usually get lunch and dinner together. We have a group message thread where we argue about which of the 5 dining courts to go to:
