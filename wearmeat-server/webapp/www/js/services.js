@@ -3,7 +3,7 @@ angular.module('wearmeat.services', [
   'btford.socket-io'
 ])
 
-.value('serverURL', '/')
+.value('serverURL', '')
 .value('serverAbsoluteURL', 'http://wheremeet.me/')
 
 // Server SocketIO transport
