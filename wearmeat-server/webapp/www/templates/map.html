@@ -40,13 +40,23 @@
 
       <div ng-repeat="member in members">
         <ui-gmap-marker
-          ng-if="member.location"
+          ng-if="(me.id == member.id) && member.location"
           idKey="member.id"
           coords="member.location"
           icon="'img/genericPerson.svg'"
-          options="{labelContent: (me.id == member.id) 
-                      ? '&#9733; ' + member.name
-                      : member.name,
+	  ng-controller="selfMapMarker"
+	  click="getName(true)"
+          options="{labelContent: '&#9733; ' + member.name,
+                    labelClass: 'wearmeat-label-dc h5'}">
+      </div>
+
+      <div ng-repeat="member in members">
+        <ui-gmap-marker
+          ng-if="(me.id != member.id) && member.location"
+          idKey="member.id"
+          coords="member.location"
+          icon="'img/genericPerson.svg'"
+          options="{labelContent: member.name,
                     labelClass: 'wearmeat-label-dc h5'}">
       </div>
 

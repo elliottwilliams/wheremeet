@@ -104,6 +104,10 @@ $ionicPopup, $stateParams) {
 
 })
 
+.controller('selfMapMarker', function($scope, getName){
+  $scope.getName = getName;
+})
+
 .controller('CreateCtrl', function ($scope, $http, $state) {
 
   $scope.diningCourts = [];
