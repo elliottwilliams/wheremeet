@@ -17,6 +17,14 @@ updateLocation
 {
   clientId: client id
   location: DOM Geolocation object
+  groupId: group id
+}
+
+updateName
+{
+  clientId: client id
+  name: uhhh name
+  groupId: group id
 }
 
 SERVER-TO-CLIENT MESSAGES:
