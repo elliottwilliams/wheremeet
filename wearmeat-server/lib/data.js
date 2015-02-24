@@ -65,6 +65,10 @@ function getMember( groupID, memberID ){
 function updateLocation( groupID, memberID, location ){
 	getMember(groupID,memberID).location = location;
 }
+function updateName(groupID, memberID, newName){
+	getMember(groupID, memberID).name = newName;
+}
+
 //used to both add new members and update old members
 //members store their own id's
 //Currently unsafe if groupID doesn't exit, needs to be checked in calling code
@@ -87,3 +91,4 @@ module.exports.addGroup = addGroup;
 module.exports.removeGroup = removeGroup;
 module.exports.getMember = getMember;
 module.exports.updateLocation = updateLocation;
+module.exports.updateName = updateName;
