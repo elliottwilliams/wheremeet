@@ -104,6 +104,26 @@ $ionicPopup, $stateParams) {
 
 })
 
+
+.controller('selfMapMarker', function($scope, getName, socket, clientId){
+  $scope.getName = function(){
+    getName(true)
+    .then(function (name) {
+      if($scope.me.name === name)
+        return false;
+
+      $scope.me.name = name;
+
+      console.debug('emitting updateName');
+      socket.emit('updateName', {
+        clientId: clientId,
+        name: name,
+        groupId: $scope.groupId
+      });
+    });
+  }
+})
+
 .controller('CreateCtrl', function ($scope, $http, $state) {
 
   $scope.diningCourts = [];

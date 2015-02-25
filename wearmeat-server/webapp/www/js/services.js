@@ -102,6 +102,18 @@ angular.module('wearmeat.services', [
 	}
 })
 
+/*
+.factory('updateName', function(){
+  return function(socket, clientId){
+    console.debug('emitting updateMembers (updateName)');
+    socket.emit('updateMembers', {
+      clientId: clientId,
+      name: getName(true) + clientId,
+      groupId: groupId
+    });
+  }
+})*/
+
 .factory('getName', function ($q, $ionicPopup, $rootScope) {
 
   /**
@@ -121,26 +133,36 @@ angular.module('wearmeat.services', [
     modalScope.errorText = null;
 
     if (forceReprompt || !modalScope.name) {
+      var title = "Enter your name to join the group";
+      var buttonNegative = "Leave";
+      var buttonPositive = "Join";
+      var errorText = "You'll need to enter your name before you can join.";
+
+      if(forceReprompt){
+        title = "Enter your new name";
+        buttonNegative = "Cancel";
+        buttonPositive = "Change it";
+        errorText = "Please enter a name, yo.";
+      }
 
       $ionicPopup.show({
-        title: "Enter your name to join the group",
+        title: title,
         scope: modalScope,
         templateUrl: 'name-prompt.html',
         buttons: [
           {
-            text: 'Leave',
+            text: buttonNegative,
             type: 'button-default',
             onTap: function (e) {
               return false;
             }
           },
           {
-            text: 'Join',
+            text: buttonPositive,
             type: 'button-positive',
             onTap: function (e) {
               if (!modalScope.name) {
-                modalScope.errorText = "You'll need to enter your name before " +
-                  "you can join.";
+                modalScope.errorText = errorText;
                 e.preventDefault();
               } else {
                 return modalScope.name;
